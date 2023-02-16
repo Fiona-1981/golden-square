@@ -1,20 +1,13 @@
 require 'password_checker'
 
 RSpec.describe PasswordChecker do
- # it "checks that the password is >= 8 characters" do
-  #password_checker = PasswordChecker.new
-  #expect(password_checker.check"abcd1234").to eq true 
-  #end
-
-  it "checks that the password is >= 8 characters" do
+  it "checks the password is >= 8 characters" do
     password_checker = PasswordChecker.new
-    expect { password_checker.check("1234hj") }.to raise_error "Invalid password, must be 8+ characters."
+    expect(password_checker.check("1234abcd")).to eq true 
   end
 
-  #it "checks that the password is >= 8 characters" do
-   # password_checker = PasswordChecker.new
-   # expect(password_checker.check"1234lk").to eq false
-  #end
-
-
+  it "fails if password is too short" do
+    password_checker = PasswordChecker.new
+    expect { password_checker.check("abc123") }.to raise_error "Invalid password, must be 8+ characters."
+  end
 end
